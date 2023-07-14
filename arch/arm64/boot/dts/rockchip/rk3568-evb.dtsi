@@ -2073,7 +2073,7 @@
 };
 
 &u2phy0_host {
-	phy-supply = <&vcc5v0_host>;
+	phy-supply = <&vcc5v0_host>;        /* 如果 phy 的电源是常供方式, 可以不用配置; 否则, 需要配置对应的 regulator. */
 	status = "okay";
 };
 

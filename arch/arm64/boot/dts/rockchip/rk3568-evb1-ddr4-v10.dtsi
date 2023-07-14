@@ -323,26 +323,26 @@
 };
 
 &gmac0 {
-	phy-mode = "rgmii";
+	phy-mode = "rgmii";                     /* 主要分为 rmii 和 rgmii 模式 */
 	clock_in_out = "output";
 
-	snps,reset-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;
+	snps,reset-gpio = <&gpio2 RK_PC6 GPIO_ACTIVE_HIGH>;     /* PHY 的复位管脚 */
 	snps,reset-active-high;
 	/* Reset time is 20ms, 100ms for rtl8211f */
-	snps,reset-delays-us = <0 20000 100000>;
+	snps,reset-delays-us = <0 20000 100000>;                /* PHY 的复位时序, 三个时间分别表示 PHY 的不同阶段的复位时序, 不同的 PHY 的复位时序是不一样的, 如果是 snps,reset-active-low 属性, 则表示三个时间分别表示 reset pin 脚拉高, 拉低, 再拉高的时间; 如果是 snps,reset-active-high, 属性, 则反之. */
 
 	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
 	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
 	assigned-clock-rates = <0>, <125000000>;
 
-	pinctrl-names = "default";
+	pinctrl-names = "default";      /* rgmii 和 rmii 模式下配置不一样, 另外, 对于时钟方式, 如果是输出时钟的 pin 脚, 该 pin 脚驱动强度一般也不一样的, 例如 rmii 模式下 ref_clock pin 脚输出时钟时, 驱动强度也会配置更大. */
 	pinctrl-0 = <&gmac0_miim
 		     &gmac0_tx_bus2
 		     &gmac0_rx_bus2
 		     &gmac0_rgmii_clk
 		     &gmac0_rgmii_bus>;
 
-	tx_delay = <0x3c>;
+	tx_delay = <0x3c>;      /* rgmii 模式下需要配置的参数 */
 	rx_delay = <0x2f>;
 
 	phy-handle = <&rgmii_phy0>;
