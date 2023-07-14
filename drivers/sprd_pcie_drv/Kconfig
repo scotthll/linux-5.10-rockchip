@@ -1,0 +1,5 @@
+config SPRD_PCIE_DRIVER
+    bool "Spreadtrum PCIe Driver"
+    default n
+    help
+      a module for spreadtrum pcie driver.

@@ -193,4 +193,4 @@ obj-$(CONFIG_RK_FLASH)		+= rkflash/
 obj-$(CONFIG_RK_HEADSET)	+= headset_observe/
 obj-$(CONFIG_RK_NAND)		+= rk_nand/
 obj-$(CONFIG_ROCKCHIP_RKNPU)	+= rknpu/
-obj-y                           += sprd_pcie_drv/
+obj-$(CONFIG_SPRD_PCIE_DRIVER)	+= sprd_pcie_drv/
