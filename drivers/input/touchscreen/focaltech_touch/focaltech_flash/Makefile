@@ -1,0 +1,1 @@
+obj-y += focaltech_upgrade_ft5446.o
